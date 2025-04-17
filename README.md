@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# USD to MYR Cryptocurrency Converter
+
+![MYR Currency Converter](https://i.imgur.com/example-screenshot.png)
+
+A comprehensive currency conversion web application that supports both fiat currencies (USD, MYR) and cryptocurrencies (BTC, ETH, SOL, HLQ). This application provides real-time exchange rates, maintains a clean and intuitive user interface, and supports URL parameter-based sharing of conversion settings.
+
+## Features
+
+### Fiat Currency Conversion
+- USD ↔ MYR conversion using Bank Negara Malaysia API
+- Accurate mid-market exchange rates
+- Real-time rate updates
+
+### Cryptocurrency Conversion
+- Support for BTC (Bitcoin), ETH (Ethereum), SOL (Solana), HLQ (Hyperliquid)
+- Conversion between:
+  * Fiat to Crypto
+  * Crypto to Fiat
+  * Crypto to Crypto
+- Uses CoinGecko API for cryptocurrency pricing
+
+### User Interface
+- Clean, modern interface with responsive design
+- Intuitive currency selection dropdowns
+- One-click currency swap functionality
+- URL parameter support for sharing conversion settings
+
+## Technical Details
+
+### Built With
+- [Next.js](https://nextjs.org) - React framework for server-side rendering
+- [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
+- [TypeScript](https://www.typescriptlang.org) - Typed JavaScript
+
+### API Integration
+- **Bank Negara Malaysia API** - For USD/MYR exchange rates
+- **CoinGecko API** - For cryptocurrency pricing
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js 18.x or later
+- npm or yarn
 
+### Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/othnielvtf/usd-to-myr-next.git
+cd usd-to-myr-next
+```
+
+2. Install dependencies
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Run the development server
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the application
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The application can be easily deployed to Vercel:
 
-## Learn More
+1. Push your code to a GitHub repository
+2. Visit [Vercel](https://vercel.com) and import your repository
+3. Follow the deployment steps
 
-To learn more about Next.js, take a look at the following resources:
+## Usage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Enter an amount in the input field
+2. Select the currency you're converting from using the dropdown
+3. Select the currency you're converting to using the dropdown
+4. View the converted amount
+5. Use the swap button to quickly reverse the conversion
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## URL Parameters
 
-## Deploy on Vercel
+You can share specific conversion settings using URL parameters:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `value`: The amount to convert (e.g., `value=100`)
+- `from`: The source currency (e.g., `from=usd`)
+- `to`: The target currency (e.g., `to=btc`)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Example: `http://localhost:3000/?value=100&from=usd&to=btc`
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- [Bank Negara Malaysia](https://www.bnm.gov.my) for providing exchange rate data
+- [CoinGecko](https://www.coingecko.com) for cryptocurrency pricing data
