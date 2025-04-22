@@ -310,15 +310,15 @@ export default function Home() {
     
     return (
       <div className="relative inline-block">
-        <div className="flex items-center space-x-1 bg-gray-50 rounded-full px-2 py-1">
-          <span className={`rounded-full overflow-hidden inline-block w-5 h-5 ${currencyInfo.bgColor} text-white text-xs flex items-center justify-center`}>
+        <div className="flex items-center space-x-1 bg-gray-100 rounded-full px-1 sm:px-2 py-1">
+          <span className={`rounded-full overflow-hidden inline-block w-4 h-4 sm:w-5 sm:h-5 ${currencyInfo.bgColor} text-white text-xs flex items-center justify-center`}>
             {currencyInfo.symbol}
           </span> 
           <select
             id={id}
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className="appearance-none bg-transparent border-none text-gray-700 font-medium focus:outline-none pr-8 py-1"
+            className="appearance-none bg-transparent border-none text-gray-700 text-xs sm:text-sm font-medium focus:outline-none pr-6 sm:pr-8 py-1"
           >
             <optgroup label="Fiat Currencies">
               {FIAT_CURRENCIES.map(currency => (
@@ -335,8 +335,8 @@ export default function Home() {
               ))}
             </optgroup>
           </select>
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-            <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-1 sm:px-2 text-gray-700">
+            <svg className="fill-current h-3 w-3 sm:h-4 sm:w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
             </svg>
           </div>
@@ -346,13 +346,13 @@ export default function Home() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-black p-2 sm:p-4">
-      <div className="w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-xl relative">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-gray-900 to-black p-2 sm:p-4">
+      <div className="w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-xl relative border border-gray-100">
         {/* Decorative bottom border */}
         <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500"></div>
         
-        <div className="p-4">
-          <h1 className="text-xl font-bold mb-4 text-center text-gray-800">MYR Currency Converter</h1>
+        <div className="p-3 sm:p-4">
+          <h1 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-center text-gray-800">MYR Currency Converter</h1>
           
           {loading && (
             <div className="p-4 text-center">
@@ -376,13 +376,14 @@ export default function Home() {
                   <div className="flex items-center space-x-2 mb-1">
                     <div className="flex-grow"></div>
                   </div>
-                  <div className="flex items-center space-x-2 justify-center">
-                    <div className="w-[40%] relative rounded-full border border-gray-200 overflow-hidden">
+                  {/* Responsive layout for currency converter */}
+                  <div className="flex flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-2 justify-center">
+                    <div className="w-full md:w-[40%] relative rounded-full border border-gray-300 overflow-hidden shadow-sm">
                       <input
                         type="number"
                         value={amount}
                         onChange={(e) => setAmount(Number(e.target.value))}
-                        className="w-full py-2.5 px-3 text-xl font-bold focus:outline-none"
+                        className="w-full py-3 px-3 text-lg md:text-xl font-bold focus:outline-none bg-gray-100 text-gray-800"
                       />
                       <div className="absolute right-0 top-0 bottom-0 flex items-center pr-2">
                         <CurrencySelector 
@@ -396,7 +397,18 @@ export default function Home() {
                       </div>
                     </div>
                     
-                    <div className="w-[40%] relative rounded-full border border-gray-200 overflow-hidden bg-gray-50">
+                    {/* Swap button for mobile - shown between inputs */}
+                    <button 
+                      onClick={handleSwapCurrencies}
+                      className="md:hidden px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium transition-colors flex items-center space-x-1 shadow-md w-1/2"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z" />
+                      </svg>
+                      <span>Swap</span>
+                    </button>
+                    
+                    <div className="w-full md:w-[40%] relative rounded-full border border-gray-300 overflow-hidden shadow-sm">
                       <input
                         type="text"
                         value={convertedAmount !== null ? 
@@ -406,7 +418,7 @@ export default function Home() {
                             convertedAmount.toFixed(2) 
                           : ''}
                         readOnly
-                        className="w-full py-2.5 px-3 text-xl font-bold focus:outline-none bg-gray-50"
+                        className="w-full py-3 px-3 text-lg md:text-xl font-bold focus:outline-none bg-gray-100 text-gray-800"
                       />
                       <div className="absolute right-0 top-0 bottom-0 flex items-center pr-2">
                         <CurrencySelector 
@@ -420,9 +432,10 @@ export default function Home() {
                       </div>
                     </div>
                     
+                    {/* Swap button for desktop - shown between inputs */}
                     <button 
                       onClick={handleSwapCurrencies}
-                      className="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium transition-colors flex items-center space-x-1 shadow-md"
+                      className="hidden md:flex px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-medium transition-colors items-center space-x-1 shadow-md"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z" />
@@ -435,7 +448,7 @@ export default function Home() {
               
               <div className="flex justify-center items-center mt-4 mb-3">
                 <div className="text-sm text-center">
-                  <span className="font-bold">RM1.000 MYR = <span className="text-blue-600">${(1 / exchangeRate.rate.middle_rate).toFixed(4)}</span> USD</span>
+                  <span className="font-bold text-xs sm:text-sm">RM1.000 MYR = <span className="text-blue-600">${(1 / exchangeRate.rate.middle_rate).toFixed(4)}</span> USD</span>
                   <div className="text-xs text-gray-500">Mid-market exchange rate at {formatTime()}</div>
                 </div>
               </div>
@@ -458,7 +471,8 @@ export default function Home() {
               </div>
 
               <div className="text-center text-xs text-gray-400 mt-3">
-                <p>Data provided by Bank Negara Malaysia • {exchangeRate.rate.date}</p> <a href="https://apikijangportal.bnm.gov.my/openapi" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">(Open API)</a>
+                <p>Data provided by Bank Negara Malaysia • {exchangeRate.rate.date}</p> 
+                <a href="https://apikijangportal.bnm.gov.my/openapi" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">(Open API)</a>
               </div>
             </div>
           )}
