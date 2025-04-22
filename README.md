@@ -1,6 +1,6 @@
 # USD to MYR Cryptocurrency Converter
 
-![MYR Currency Converter](https://i.imgur.com/example-screenshot.png)
+![MYR Currency Converter](https://i.imgur.com/U7byMUjl.png)
 
 A comprehensive currency conversion web application that supports both fiat currencies (USD, MYR) and cryptocurrencies (BTC, ETH, SOL, HLQ). This application provides real-time exchange rates, maintains a clean and intuitive user interface, and supports URL parameter-based sharing of conversion settings.
 
